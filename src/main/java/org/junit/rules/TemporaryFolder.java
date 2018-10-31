@@ -200,8 +200,8 @@ public class TemporaryFolder extends ExternalResource {
         File relativePath = null;
         File file = root;
         boolean lastMkdirsCallSuccessful = true;
-        for (int i = 0; i < paths.length; i++) {
-            relativePath = new File(relativePath, paths[i]);
+        for (String path : paths) {
+            relativePath = new File(relativePath, path);
             file = new File(root, relativePath.getPath());
 
             lastMkdirsCallSuccessful = file.mkdirs();
@@ -278,7 +278,7 @@ public class TemporaryFolder extends ExternalResource {
      * @return {@code true} if all resources are deleted successfully,
      *         {@code false} otherwise.
      */
-    protected boolean tryDelete() {
+    private boolean tryDelete() {
         if (folder == null) {
             return true;
         }
